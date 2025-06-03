@@ -19,6 +19,17 @@
       <p><strong>Email:</strong> {{user.Email}}</p>
       <p><strong>Birthday:</strong> {{user.Birthday | date}}</p>
     </div>
+    <div *ngIf="favoriteMovies.length > 0" style="margin-top: 24px;">
+      <h3>Your Favorite Movies</h3>
+      <ul>
+        <li *ngFor="let movie of favoriteMovies">
+          {{ movie.Title }}
+        </li>
+      </ul>
+    </div>
+    <div *ngIf="!favoriteMovies.length" style="margin-top: 24px;">
+      <em>You have no favorite movies yet.</em>
+    </div>
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" *ngIf="!editable" (click)="enableEdit()">Edit</button>

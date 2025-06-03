@@ -12,6 +12,7 @@ export class ProfilePageComponent implements OnInit {
   user: any = {};
   editable: boolean = false;
   updatedUser: any = {};
+  favoriteMovies: any[] = [];
 
   constructor(
     private fetchApiData: UserRegistrationService,
@@ -21,6 +22,7 @@ export class ProfilePageComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserProfile();
+    this.getFavoriteMovies();
   }
 
   getUserProfile(): void {
@@ -56,5 +58,15 @@ export class ProfilePageComponent implements OnInit {
 
   goBack(): void {
     this.router.navigate(['movies']);
+  }
+
+  getFavoriteMovies(): void {
+    const username = localStorage.getItem('user');
+    if (!username) return;
+    this.fetchApiData.getFavoriteMovies(username).subscribe((resp) => {
+      this.favoriteMovies = resp;
+    }, (error) => {
+      this.snackBar.open('Failed to load favorite movies.', 'OK', { duration: 2000 });
+    });
   }
 }
