@@ -1,0 +1,28 @@
+<mat-card *ngIf="user.Username">
+  <mat-card-header>
+    <mat-card-title>Your Profile</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form *ngIf="editable">
+      <mat-form-field>
+        <input matInput [(ngModel)]="updatedUser.Username" name="Username" placeholder="Username" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="updatedUser.Email" name="Email" placeholder="Email" required>
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput [(ngModel)]="updatedUser.Birthday" name="Birthday" placeholder="Birthday" type="date">
+      </mat-form-field>
+    </form>
+    <div *ngIf="!editable">
+      <p><strong>Username:</strong> {{user.Username}}</p>
+      <p><strong>Email:</strong> {{user.Email}}</p>
+      <p><strong>Birthday:</strong> {{user.Birthday | date}}</p>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-raised-button color="primary" *ngIf="!editable" (click)="enableEdit()">Edit</button>
+    <button mat-raised-button color="primary" *ngIf="editable" (click)="saveProfile()">Save</button>
+    <button mat-button *ngIf="editable" (click)="cancelEdit()">Cancel</button>
+  </mat-card-actions>
+</mat-card>
