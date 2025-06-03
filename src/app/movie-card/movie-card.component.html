@@ -1,4 +1,7 @@
 <div>
+    <button mat-raised-button id="profile" class="profile" color="accent"  (click)="goToProfile()">
+        Profile
+    </button>
     <mat-card *ngFor="let movie of movies;">
         <mat-card-header>
         <mat-card-title>{{movie.Title}}</mat-card-title>
