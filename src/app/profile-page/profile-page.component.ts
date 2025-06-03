@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-profile-page',
@@ -14,7 +15,8 @@ export class ProfilePageComponent implements OnInit {
 
   constructor(
     private fetchApiData: UserRegistrationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,5 +52,9 @@ export class ProfilePageComponent implements OnInit {
   cancelEdit(): void {
     this.editable = false;
     this.updatedUser = { ...this.user };
+  }
+
+  goBack(): void {
+    this.router.navigate(['movies']);
   }
 }

@@ -22,6 +22,7 @@
   </mat-card-content>
   <mat-card-actions>
     <button mat-raised-button color="primary" *ngIf="!editable" (click)="enableEdit()">Edit</button>
+    <button mat-stroked-button color="accent" *ngIf="!editable" (click)="goBack()">Back</button>
     <button mat-raised-button color="primary" *ngIf="editable" (click)="saveProfile()">Save</button>
     <button mat-button *ngIf="editable" (click)="cancelEdit()">Cancel</button>
   </mat-card-actions>
