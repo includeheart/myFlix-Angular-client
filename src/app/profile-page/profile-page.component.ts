@@ -63,8 +63,12 @@ export class ProfilePageComponent implements OnInit {
   getFavoriteMovies(): void {
     const username = localStorage.getItem('user');
     if (!username) return;
-    this.fetchApiData.getFavoriteMovies(username).subscribe((resp) => {
-      this.favoriteMovies = resp;
+    this.fetchApiData.getUser(username).subscribe((user) => {
+      this.fetchApiData.getAllMovies().subscribe((movies) => {
+        this.favoriteMovies = movies.filter((movie: any) =>
+          user.FavoriteMovies.includes(movie._id)
+        );
+      });
     }, (error) => {
       this.snackBar.open('Failed to load favorite movies.', 'OK', { duration: 2000 });
     });
