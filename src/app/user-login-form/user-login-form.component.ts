@@ -26,12 +26,18 @@ export class UserLoginFormComponent implements OnInit {
         localStorage.setItem('token', result.token);
         localStorage.setItem('user', result.user.Username);
         this.dialogRef.close();
-        this.snackBar.open('Login successful!', 'OK', { duration: 2000 });
+        const snackBarRef = this.snackBar.open('Login successful!', 'OK', { duration: 2000 });
+        snackBarRef.onAction().subscribe(() => {
+          snackBarRef.dismiss();
+        });
         this.router.navigate(['movies']);
       },
       (error) => {
         const errMsg = error?.error?.message || error?.error || 'Login failed. Please try again.';
-        this.snackBar.open(errMsg, 'OK', { duration: 2000 });
+        const snackBarRef = this.snackBar.open(errMsg, 'OK', { duration: 2000 });
+        snackBarRef.onAction().subscribe(() => {
+          snackBarRef.dismiss();
+        });
       }
     );
   }
