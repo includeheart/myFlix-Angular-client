@@ -45,6 +45,10 @@ export class ProfilePageComponent implements OnInit {
   saveProfile(): void {
     const username = localStorage.getItem('user');
     if (!username) return;
+    if (this.updatedUser.Birthday && this.updatedUser.Birthday.length === 10) {
+      this.updatedUser.Birthday = new Date(this.updatedUser.Birthday).toISOString();
+    }
+
     this.fetchApiData.editUser(username, this.updatedUser).subscribe((resp) => {
       this.user = resp;
       this.editable = false;
