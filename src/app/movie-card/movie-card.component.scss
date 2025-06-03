@@ -1,10 +1,13 @@
-div {
+.movie-list {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
 }
 
 mat-card {
-    flex: 1 1 auto;
+    flex: 0 1 300px;
+    margin-bottom: 16px;
 }
 
 .profile-btn-container {
