@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   template: `
     <h2 mat-dialog-title>{{ data.Name }}</h2>
     <mat-dialog-content>
-      <p>{{ data.Description }}</p>
+      <p>{{ data.Bio }}</p>
     </mat-dialog-content>
   `
 })
