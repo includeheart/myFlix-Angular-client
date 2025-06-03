@@ -37,6 +37,9 @@ export class ProfilePageComponent implements OnInit {
   enableEdit(): void {
     this.editable = true;
     this.updatedUser = { ...this.user };
+    if (this.updatedUser.Birthday) {
+      this.updatedUser.Birthday = this.updatedUser.Birthday.slice(0, 10);
+    }
   }
 
   saveProfile(): void {
