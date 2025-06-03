@@ -24,6 +24,9 @@
       <ul>
         <li *ngFor="let movie of favoriteMovies">
           {{ movie.Title }}
+          <button mat-icon-button color="warn" (click)="removeFromFavorites(movie._id)" aria-label="Remove from favorites">
+            <mat-icon>delete</mat-icon>
+          </button>
         </li>
       </ul>
     </div>

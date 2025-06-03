@@ -69,4 +69,15 @@ export class ProfilePageComponent implements OnInit {
       this.snackBar.open('Failed to load favorite movies.', 'OK', { duration: 2000 });
     });
   }
+
+  removeFromFavorites(movieId: string): void {
+    const username = localStorage.getItem('user');
+    if (!username) return;
+    this.fetchApiData.deleteFavoriteMovie(username, movieId).subscribe(() => {
+      this.favoriteMovies = this.favoriteMovies.filter(movie => movie._id !== movieId);
+      this.snackBar.open('Removed from favorites.', 'OK', { duration: 2000 });
+    }, (error) => {
+      this.snackBar.open('Failed to remove favorite.', 'OK', { duration: 2000 });
+    });
+  }
 }
