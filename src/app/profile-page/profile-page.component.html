@@ -11,7 +11,14 @@
         <input matInput [(ngModel)]="updatedUser.Email" name="Email" placeholder="Email" required>
       </mat-form-field>
       <mat-form-field>
-        <input matInput [(ngModel)]="updatedUser.Birthday" name="Birthday" placeholder="Birthday" type="date">
+        <input
+          matInput
+          [(ngModel)]="updatedUser.Birthday"
+          [value]="formattedBirthday"
+          name="Birthday"
+          placeholder="Birthday"
+          type="date"
+        >
       </mat-form-field>
     </form>
     <div *ngIf="!editable">

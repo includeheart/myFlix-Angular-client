@@ -84,4 +84,9 @@ export class ProfilePageComponent implements OnInit {
       this.snackBar.open('Failed to remove favorite.', 'OK', { duration: 2000 });
     });
   }
+
+  get formattedBirthday(): string {
+    if (!this.updatedUser.Birthday) return '';
+    return this.updatedUser.Birthday.slice(0, 10);
+  }
 }
