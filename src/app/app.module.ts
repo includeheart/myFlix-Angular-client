@@ -22,6 +22,9 @@ import { GenreDialogComponent } from './genre-dialog/genre-dialog.component';
 import { DirectorDialogComponent } from './director-dialog/director-dialog.component';
 import { MovieDetailsDialogComponent } from './movie-details-dialog/movie-details-dialog.component';
 
+/**
+ * Defines the application's main routes.
+ */
 const appRoutes: Routes = [
   { path: 'welcome', component: WelcomePageComponent },
   { path: 'movies', component: MovieCardComponent },
@@ -59,4 +62,7 @@ const appRoutes: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
+/**
+ * AppModule is the root module that bootstraps the Angular application.
+ */
 export class AppModule { }

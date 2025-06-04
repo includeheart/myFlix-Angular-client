@@ -3,28 +3,43 @@ import { UserRegistrationService } from '../fetch-api-data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 
+/**
+ * Displays and manages the user's profile, including editing user info
+ * and managing favorite movies.
+ */
 @Component({
   selector: 'app-profile-page',
   templateUrl: './profile-page.component.html',
   styleUrls: ['./profile-page.component.scss']
 })
 export class ProfilePageComponent implements OnInit {
+  /** User profile data */
   user: any = {};
+  /** Whether the profile is in edit mode */
   editable: boolean = false;
+  /** Stores updated user data during editing */
   updatedUser: any = {};
+  /** List of user's favorite movies */
   favoriteMovies: any[] = [];
 
+  /**
+   * @param fetchApiData Service for API requests
+   * @param snackBar Angular Material snackbar for notifications
+   * @param router Angular router for navigation
+   */
   constructor(
     private fetchApiData: UserRegistrationService,
     private snackBar: MatSnackBar,
     private router: Router
   ) {}
 
+  /** Loads user profile and favorite movies on initialization */
   ngOnInit(): void {
     this.getUserProfile();
     this.getFavoriteMovies();
   }
 
+  /** Fetches the user's profile data */
   getUserProfile(): void {
     const username = localStorage.getItem('user');
     if (!username) return;
@@ -34,6 +49,7 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /** Enables edit mode for the profile */
   enableEdit(): void {
     this.editable = true;
     this.updatedUser = { ...this.user };
@@ -42,6 +58,7 @@ export class ProfilePageComponent implements OnInit {
     }
   }
 
+  /** Saves the updated profile data */
   saveProfile(): void {
     const username = localStorage.getItem('user');
     if (!username) return;
@@ -58,15 +75,18 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /** Cancels editing and restores original profile data */
   cancelEdit(): void {
     this.editable = false;
     this.updatedUser = { ...this.user };
   }
 
+  /** Navigates back to the movies page */
   goBack(): void {
     this.router.navigate(['movies']);
   }
 
+  /** Fetches the user's favorite movies */
   getFavoriteMovies(): void {
     const username = localStorage.getItem('user');
     if (!username) return;
@@ -81,6 +101,10 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /**
+   * Removes a movie from the user's favorites.
+   * @param movieId ID of the movie to remove
+   */
   removeFromFavorites(movieId: string): void {
     const username = localStorage.getItem('user');
     if (!username) return;
@@ -92,6 +116,7 @@ export class ProfilePageComponent implements OnInit {
     });
   }
 
+  /** Returns the formatted birthday string for display */
   get formattedBirthday(): string {
     if (!this.updatedUser.Birthday) return '';
     return this.updatedUser.Birthday.slice(0, 10);

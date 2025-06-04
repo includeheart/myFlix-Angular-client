@@ -1,6 +1,11 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
+/**
+ * Dialog component to display genre information.
+ * 
+ * Receives genre data via Angular Material's dialog data injection.
+ */
 @Component({
   selector: 'app-genre-dialog',
   template: `
@@ -11,5 +16,8 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
   `
 })
 export class GenreDialogComponent {
+  /**
+   * @param data Genre data injected from the parent component.
+   */
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 }
